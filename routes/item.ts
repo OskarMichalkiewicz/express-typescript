@@ -1,8 +1,8 @@
 import express from "express";
 import { routesFactory } from "./routesFactory";
-import tea from "../controllers/tea";
+import item from "../controllers/item";
 const router = express.Router();
 
-routesFactory(router, tea);
+routesFactory(router, item);
 
 export default router;

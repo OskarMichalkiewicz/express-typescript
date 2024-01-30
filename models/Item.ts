@@ -1,16 +1,11 @@
 import mongoose from "mongoose";
 
-const TeaSchema = new mongoose.Schema({
+const ItemSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "name is mandatory"],
     trim: true,
     maxlength: [50, "name can not be longer than 50 characters"],
-  },
-  type: {
-    type: String,
-    required: [true, "type is mandatory"],
-    enum: ["Oolong", "Yellow", "Green", "Black", "Pu-erh", "White", "Heicha"],
   },
   description: {
     type: String,
@@ -18,4 +13,4 @@ const TeaSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Tea", TeaSchema);
+export default mongoose.model("Item", ItemSchema);
