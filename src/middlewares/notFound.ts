@@ -1,5 +1,6 @@
 import { Handler } from "express";
+import { NOT_FOUND } from "../errors/enums";
 const notFound: Handler = (req, res) =>
-  res.status(404).send("Route does not exist");
+  res.status(NOT_FOUND).send("Route does not exist");
 
 export default notFound;
