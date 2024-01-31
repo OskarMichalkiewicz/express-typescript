@@ -1,18 +1,14 @@
 import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
+import { RequestHandler } from "express";
 import APIError from "../errors/APIError";
 import { UNAUTHORIZED } from "../errors/enums";
-
-interface ICustomRequest extends Request {
-  user: { id: string; name: string };
-}
 
 interface TokenPayload {
   id: string;
   name: string;
 }
 
-const auth = async (req: ICustomRequest, res: Response, next: NextFunction) => {
+const auth: RequestHandler = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     throw new APIError("Authentication invalid", UNAUTHORIZED);
@@ -35,4 +31,4 @@ const auth = async (req: ICustomRequest, res: Response, next: NextFunction) => {
   }
 };
 
-module.exports = auth;
+export default auth;

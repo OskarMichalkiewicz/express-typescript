@@ -4,9 +4,9 @@ import APIError from "../errors/APIError";
 import { BAD_REQUEST, CREATED, OK, UNAUTHORIZED } from "../errors/enums";
 
 const register: RequestHandler = async (req, res) => {
-  const { name, createJWT } = await User.create(req.body);
-  const token = createJWT();
-  res.status(CREATED).json({ user: { name }, token });
+  const user = await User.create(req.body);
+  const token = user.createJWT();
+  res.status(CREATED).json({ user: { name: user.name }, token });
 };
 
 const login: RequestHandler = async (req, res) => {

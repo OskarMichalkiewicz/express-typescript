@@ -6,9 +6,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   if (err instanceof APIError) {
     return res.status(err.statusCode).json({ msg: err.message });
   }
-  return res
-    .status(INTERNAL_SERVER_ERROR)
-    .json({ msg: "Something went wrong, please try again." });
+  return res.status(INTERNAL_SERVER_ERROR).json({ msg: err.message });
 };
 
 export default errorHandler;

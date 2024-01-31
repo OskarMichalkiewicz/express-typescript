@@ -1,9 +1,11 @@
 import express, { Application } from "express";
 import dotenv from "dotenv";
 import item from "./routes/item";
+import auth from "./routes/auth";
 import mongoose from "mongoose";
-import notFound from "./middlewares/notFound";
 import errorHandler from "./middlewares/errorHandler";
+import notFound from "./middlewares/notFound";
+import authMiddleware from "./middlewares/auth";
 import "express-async-errors";
 
 dotenv.config();
@@ -13,6 +15,10 @@ const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use("/api/auth", auth);
+
+app.use(authMiddleware);
 app.use("/api/item", item);
 
 app.use(notFound);
