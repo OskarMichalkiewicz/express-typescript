@@ -14,16 +14,16 @@ const login: RequestHandler = async (req, res) => {
 
   if (!email || !password) {
     throw new APIError(
-      "To log in you must provide email and password",
+      "To log in you must provide email and password.",
       BAD_REQUEST
     );
   }
   const user = await User.findOne({ email });
   if (!user) {
-    throw new APIError("Invalid credentials", UNAUTHORIZED);
+    throw new APIError("Invalid credentials.", UNAUTHORIZED);
   }
-  if (!(await user.comparePassword(password))) {
-    throw new APIError("Invalid credentials", UNAUTHORIZED);
+  if (!(await user.comparePasswords(password))) {
+    throw new APIError("Invalid credentials.", UNAUTHORIZED);
   }
   const token = user.createJWT();
   res.status(OK).json({ user: { name: user.name }, token });

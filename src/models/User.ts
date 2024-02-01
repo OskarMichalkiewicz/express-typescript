@@ -6,22 +6,22 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Name is mandatory"],
+      required: [true, "Name is mandatory."],
       maxlength: 50,
       minlength: 3,
     },
     email: {
       type: String,
-      required: [true, "Email is mandatory"],
+      required: [true, "Email is mandatory."],
       match: [
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        "Please provide a valid email",
+        "Please provide a valid email.",
       ],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, "Password is mandatory"],
+      required: [true, "Password is mandatory."],
       minlength: 6,
     },
   },
@@ -38,7 +38,7 @@ const UserSchema = new Schema(
         console.log(token);
         return token;
       },
-      async comparePassword(password: string) {
+      async comparePasswords(password: string) {
         const isMatch = await bcrypt.compare(password, this.password);
         return isMatch;
       },
