@@ -4,6 +4,7 @@ export const {
   CREATED,
   UNAUTHORIZED,
   NOT_FOUND,
+  CONFLICT,
   BAD_REQUEST,
   INTERNAL_SERVER_ERROR,
 } = StatusCodes;

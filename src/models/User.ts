@@ -35,7 +35,6 @@ const UserSchema = new Schema(
             expiresIn: process.env.JWT_LIFETIME,
           }
         );
-        console.log(token);
         return token;
       },
       async comparePasswords(password: string) {

@@ -1,12 +1,12 @@
-import express, { Application } from "express";
+import "express-async-errors";
 import dotenv from "dotenv";
+import express, { Application } from "express";
+import mongoose from "mongoose";
 import item from "./routes/item";
 import auth from "./routes/auth";
-import mongoose from "mongoose";
 import errorHandler from "./middlewares/errorHandler";
 import notFound from "./middlewares/notFound";
 import authMiddleware from "./middlewares/auth";
-import "express-async-errors";
 
 dotenv.config();
 
@@ -20,7 +20,6 @@ app.use("/api/auth", auth);
 
 app.use(authMiddleware);
 app.use("/api/item", item);
-
 app.use(notFound);
 app.use(errorHandler);
 
